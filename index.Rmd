@@ -1,0 +1,22 @@
+---
+title: "Probability & Statistics for Scientists and Engineers"
+---
+
+This is the class site for MATH 530/630 at Oregon Health & Science University. 
+
+# Logistics
+
+- First date of class: 
+- Last date of class: 
+- Class Meetings:
+- Location: [TBD](http://www.ohsu.edu/xd/health/ohsu-near-you/portland/marquam-hill/upload/OHSU-facilities-map.pdf)
+
+# Policies
+
+- All course materials will be available on this site. All announcements will be made on [Sakai](). 
+- All assignments will be submitted on [Sakai](). Please no email submissions.
+- Please refer to the [syllabus](syllabus.html) for all other policies.
+
+# Overview of our 12 weeks together
+
+![](http://moderndive.netlify.com/images/flowcharts/flowchart/flowchart.002.png)
