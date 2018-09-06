@@ -1,0 +1,96 @@
+---
+title: "Homework 2"
+subtitle: "Math 530/630"
+author: "Alison Presmanes Hill"
+date: "Due: 11/02/2017"
+output: pdf_document
+---
+```{r include = FALSE}
+knitr::opts_chunk$set(tidy = FALSE)
+```
+
+
+Install and load the `MASS` package in R so that you can use the `cats` dataset. (Note that if you have `dplyr` installed and wish to use `dplyr::select`, `MASS` also has a `select` function that will mask the `dplyr` version.) Using the `cats` dataset, we'll explore the difference between *covariance* and *correlation*.
+
+
+1. Make a scatterplot of body weight versus heart weight in this sample of cats, and add the linear regression line. What do you see? (hint: comment on linearity of association and strength of that association) (See also: http://guessthecorrelation.com). Using the built-in R function `cov`, calculate the covariance of body weight and heart weight in this sample of cats. (hint: use `with(cats, cov(arg1, arg2))` or `cov(cats$arg1, cats$arg2)`)
+
+```{r warning = FALSE, message = FALSE}
+#install.packages("MASS")
+library(MASS)
+library(dplyr)
+library(ggplot2)
+head(cats)
+glimpse(cats)
+select <- dplyr::select # if you want to override the MASS select function with the dplyr one
+```
+    
+2. Convert the units of both body and heart weight from the metric system to the imperial system, using the code provided below, and re-make your scatterplot. What changed? What did not change? Also do the following:
+
+    - Re-calculate the covariance between body and heart weight in pounds. What do you notice? Does it make sense? 
+    - Using the built-in R function `cor`, calculate two correlations between body and heart weight- one on the raw values in kg and g, respectively, and one using the same measurements after converting to pounds. 
+    - Compare and contrast the two correlations you calculated to the two covariances you have calculated.
+
+
+```{r eval = FALSE}
+# convert units for part c
+cats_imperial <- cats %>%
+  mutate(bwt_lbs = Bwt * 2.205,
+         hwt_lbs = Hwt * 0.0022046)
+```
+
+
+3. Finally, go back to the original raw measures of body and heart weight (in kg and g, respectively). 
+
+    - Transform each variable into z-score form (you may wish to confirm for yourself that the mean = 0 and sd = 1 for each).
+    - Calculate the covariance and the correlation between the two variables in z-score form. 
+    - Use this example to explain in words how a correlation is different from covariance (hint: do you think you want a measure of association between two variables that is sensitive to linear transformations? Why or why not? Do either of these two statistics appear to be insensitive to linear transformation? If so, look carefully at the formulas and try to explain in words why.)
+    
+```{r}
+ggplot(cats, aes(x = Bwt, y = Hwt)) + geom_point() + geom_smooth(method = "lm")
+with(cats, cov(Bwt, Hwt))
+```
+
+```{r}
+# convert units for part c
+cats_imperial <- cats %>%
+  mutate(bwt_lbs = Bwt * 2.205,
+         hwt_lbs = Hwt * 0.0022046)
+```
+
+```{r}
+# the covariance plummeted, but the linear relationship looked the same
+cats_imperial %>%
+  summarise(cov_metric = cov(Bwt, Hwt),
+            cov_imperial = cov(bwt_lbs, hwt_lbs))
+
+# new covariance is exactly...
+2.205 * 0.0022046 * .95
+```
+
+
+```{r}
+# covariance changes; correlation is the same after unit conversion
+cats_imperial %>%
+  summarise(cov_metric = cov(Bwt, Hwt),
+            cov_imperial = cov(bwt_lbs, hwt_lbs),
+            cor_metric = cor(Bwt, Hwt),
+            cor_imperial = cor(bwt_lbs, hwt_lbs))
+```
+
+
+```{r}
+# convert to z-scores
+zcats <- cats_imperial %>%
+  mutate(bwt_z = (Bwt - mean(Bwt))/sd(Bwt),
+         hwt_z = (Hwt - mean(Hwt))/sd(Hwt))
+
+zcats %>%
+  summarise(cov_metric = cov(Bwt, Hwt),
+            z_cov_metric = cov(bwt_z, hwt_z),
+            z_cor_metric = cor(bwt_z, hwt_z))
+# note covariance of z-scores and correlation are the same
+```
+
+Key takeaway: Pearson's product moment correlation coefficient is invariant under linear transformation of x, y, or both. This is because correlation is the covariance of the z-scores. A measure of association between 2 variables is not very useful if linear transformation of either variable changes the statistic.
+    

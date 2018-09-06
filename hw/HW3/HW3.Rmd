@@ -1,0 +1,57 @@
+---
+title: "Homework 3"
+subtitle: "Math 530/630"
+author: "Alison Presmanes Hill"
+date: "Due: 11/21/2017"
+output: pdf_document
+---
+
+1. The longitudinal study [“Bone mass is recovered from lactation to postweaning in adolescent mothers with low calcium intakes”](https://www.ncbi.nlm.nih.gov/pubmed/15531682) examined total-body bone mineral content of young mothers during breast feeding and then in the postweaning period. We want to test the hypothesis that mothers gained at least 25 grams of bone mineral content in the postwearning period. The data for 10 mothers is provided below; use a significance level of 0.05. The column `bf` stands for the first measurement (during breastfeeding). The column `pw` stands for the second measurement (during postweaning period). All values are in grams of bone density.
+
+    a. State the null and alternative hypotheses.
+    b. First, do the test wrong: use an independent samples t-test, which ignores the paired nature of the dependent variables here, using the `t.test` function in R assuming equal variances. What would you conclude?
+    c. Now, do the test right: use a dependent samples t-test (also known as a paired t-test), using the `t.test` function in R. Do you change your conclusions? Explain why or why not. In your discussion, you must reference the degrees of freedom of each test. 
+
+```{r}
+bones <- data.frame(mother=1:10,
+    bf=c(1928, 2549, 2825, 1924, 1628, 2175, 2114, 2621, 1843, 2541),
+    pw=c(2126, 2885, 2895, 1942, 1750, 2184, 2164, 2626, 2006, 2627))
+```
+
+
+```{r eval= FALSE}
+# Remember, the two-sample test is inappropriate.
+t.test(bones$pw, bones$bf, mu=25, alternative="greater", var.equal = TRUE)
+
+# this is the right test
+t.test(bones$pw, bones$bf, mu=25, paired = TRUE, alternative="greater")
+```
+
+
+
+
+
+
+2. Your office mate ran an experiment with *N*=50 to test the hypothesis that her sample would have a mean different from the population mean, $\mu$=0, previously found by her advisor. She conducted a one-sample *t* test with $\alpha$=.05 (two-tailed), and reported the 95% confidence interval for $\mu$ of variable *X* is (8.979, 10.349). Circle which of the following must also be true:
+
+> a. She rejected her null hypothesis. TRUE
+
+> b. The *t*-statistic based on her sample was greater than 2.01. TRUE
+
+```{r include=FALSE}
+qt(.975, 49)
+```
+
+> c. The *p* value for her *t*-statistic was less than her $\alpha$-level. TRUE
+
+> d. Her degrees of freedom were 51. FALSE
+
+> e. Her sample mean of *X* was 9.664. TRUE
+
+> f. Her sample mean of *X* was 5.664. FALSE
+
+3. Suppose that the readings of a laboratory scale are normally distributed with unknown mean $\mu$ and standard deviation $\sigma$ = 0.01 grams. To assess the accuracy of the laboratory scale, a standard weight that is known to weigh exactly 1 gram is repeatedly weighed a total of *N* = 50 times. Let $\bar{x}$ = 0.998 be the average of the 50 readings. What is the 95% confidence interval for $\mu$?
+
+```{r include= FALSE}
+#(0.99523, 1.00077)
+```

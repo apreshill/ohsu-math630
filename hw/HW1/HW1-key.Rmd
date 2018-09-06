@@ -1,0 +1,71 @@
+---
+title: "Homework 1 Key"
+subtitle: "Math 530/630"
+author: "Alison Presmanes Hill"
+date: "Due: 10/24/2017"
+output: pdf_document
+---
+
+1. A coin is tossed three times and the sequence of heads and tails is recorded.
+    a. List the sample space.
+    b. List the elements that make up the following events: 
+        - $A =$ at least two heads; 
+        - $B =$ the first two tosses are heads; 
+        - $C =$ the last toss is a tail.
+    c. List the elements of the following events:  
+        - complement of $A$, 
+        - $A \cap B$, 
+        - $A \cup C$.
+
+*Answer*
+
+Note, for all answers in this homework that don't explicitly call for R, I don't require or expect that you use R. I use it on most problems just for the sake of convenience and so you can follow the calculations.
+
+```{r include = TRUE, eval = FALSE}
+a) hhh, ttt, hht, tth, htt, hth, tht, thh
+b) 1) hhh, hht, hth, thh
+   2) hhh, hht
+   3) ttt, hht, htt, tht
+c) 1) ttt, tth, htt, tht
+   2) hhh, hht
+   3) ttt, hht, htt, tht, hhh, hth, thh
+``` 
+    
+
+2. In a city, 65% of people drink coffee, 50% drink tea, and 25% drink both.
+    a. What is the probability that a person chosen at random will drink at least one of coffee or tea? 
+    b. Will drink neither? 
+
+*Answer*
+```{r}
+# a) .9
+coffee <- .65
+tea <- .5
+both <- .25
+```
+
+Recalling that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$:
+
+```{r}
+coffee_or_tea <- coffee + tea - both
+coffee_or_tea
+```
+
+
+```{r }
+# b) .1
+```
+
+Recalling that $P(A^{c}) = 1 - P(A)$:
+
+```{r}
+1 - coffee_or_tea
+```
+
+3. 
+```{r eval = FALSE}
+a), b)  Some variation on this with 15, 30, 60, 100
+x <- rnorm(15)
+#c)
+```
+Something along the lines of: For small values of $n$, samples drawn from the normal distribution may not have the classic "bell shaped" distribution. qq-plots may not fall precisely on a straight line.
