@@ -358,8 +358,82 @@ div.tocify {
 <li>Show you, in a way that no homework assignment can, the complexity and joy of doing real data analysis.</li>
 </ol>
 </div>
-<div id="the-report" class="section level1">
-<h1>The report</h1>
+<div id="grading" class="section level1">
+<h1>Grading</h1>
+<p>The final project will be turned in and graded in 5 phases, worth a total of 100 points toward your final grade.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Total points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>P0: Pick a partner and a paper</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>P1: Data quality review</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>P2: Data delivery</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>P3: EDA report</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>P4: Replication/extension report</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>P5: Presentation</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="p0-pick-a-partner-and-a-paper" class="section level1">
+<h1>P0: Pick a partner and a paper</h1>
+</div>
+<div id="p1-data-quality-review" class="section level1">
+<h1>P1: Data Quality Review</h1>
+<p>The goal of this project piece is to look at and explore your dataset for your final project. You will use the <a href="https://github.com/Quartz/bad-data-guide/">Quartz Bad Data Guide</a> to help guide your data quality review. Indicate which, if any variable(s), in your dataset has any of the issues listed. If you indicate a variable with an issue, please include a brief paragraph (2-3 sentences tops) describing the issue further.</p>
+</div>
+<div id="p2-data-delivery" class="section level1">
+<h1>P2: Data Delivery</h1>
+<p>Please upload 4 things, as detailed in the <a href="https://peerj.com/preprints/3139.pdf">Ellis &amp; Leek paper</a>:</p>
+<ul>
+<li>The raw data.</li>
+<li>A tidy data set (Wickham 2014).</li>
+<li>A code book describing each variable and its values in the tidy data set. [do this for all variables that will be part of your replication analyses]</li>
+<li>An explicit and exact recipe you used to go from 1 -&gt; 2,3. [this must be an R script or R Markdown file]</li>
+</ul>
+</div>
+<div id="p3-exploratory-data-analysis-eda-report" class="section level1">
+<h1>P3: Exploratory data analysis (EDA) report</h1>
+<p>This report should include:</p>
+<ul>
+<li>A discussion of issues uncovered in your data quality review. How did you resolve them? Or were you not able to? Could they impact your ability to replicate any downstream analyses?</li>
+<li>Descriptive statistics and/or plots presented in the paper that you know you can reproduce from the dataset available (these may be presented in the “methods” section of the article text or tables and can include sample size and participant characteristics for human subjects research like age, gender, race/ethnicity of participants, etc.)</li>
+<li>Any additional statistics or plots that should be part of a good EDA as covered in class</li>
+<li>A thoughtful discussion of any issues you identified in your EDA that could impact your ability to replicate any downstream analyses (i.e., missing data? Or numbers of subjects don’t match? Basic statistics like means/sds are off? Key variables are missing? Unexpected values present in a variable that you can’t interpret?)</li>
+</ul>
+</div>
+<div id="p4-replicationextension-report" class="section level1">
+<h1>P4: Replication/extension report</h1>
+<p>Each team has already discussed the scope of your replication in a one-on-one meeting with Alison. The scope was intentionally limited to those analyses/results that are based on the general linear model (t-tests, linear regression, Analysis of Variance).</p>
+<p>You should attempt to replicate every result, table, and figure in the original paper that is relevant to that analysis, as well as any analyses reported in text.</p>
+<p>Do not spend too much time on layout or formatting. So, if your figure has legends in a different place or uses different colors in your plot or if a table has a certain formatting, don’t worry about replicating every last detail- what is important is that you attempt to replicate the content.</p>
+<p>Your extension involves going beyond the original published article, using the same data. Your extension must be well-reasoned, with a sound research question that is clearly stated, and must include at least 2 of 3 of the following possible <em>extension</em> pieces:</p>
+<ul>
+<li>A plot</li>
+<li>A data summary table</li>
+<li>An additional analysis</li>
+</ul>
 <p>Your final report should be a document that summarizes your replication/extension project with code in R Markdown. This document will be highly structured. You will show all of your R code in chunks (you can do this easily by doing nothing at all! This keeps the default <code>knitr</code> global chunk setting of <code>echo = TRUE</code> for all chunks). Scripts that were used to import, clean, and tidy your data should be referenced in your R Markdown document using <code>source()</code> in a chunk, as in:</p>
 <pre class="r"><code>source(&quot;01-import.R&quot;) # part of your &quot;data delivery&quot;
 source(&quot;02-clean.R&quot;) # part of your &quot;data delivery&quot;
@@ -387,34 +461,9 @@ source(&quot;03-tidy.R&quot;) # part of your &quot;data delivery&quot;
 <li><a href="final-examples/example1.pdf">Turbidity interferes with foraging success of visual but not chemosensory predators</a></li>
 <li><a href="final-examples/example2.pdf">Different Visual Preference Patterns in Response to Simple and Complex Dynamic Social Stimuli in Preschool-Aged Children with Autism Spectrum Disorders</a></li>
 </ul>
-<div id="exploratory-data-analysis-eda-report" class="section level2">
-<h2>Exploratory data analysis (EDA) report</h2>
-<p>This section should include:</p>
-<ul>
-<li>A discussion of issues uncovered in your data quality review. How did you resolve them? Or were you not able to? Could they impact your ability to replicate any downstream analyses?</li>
-<li>Descriptive statistics and/or plots presented in the paper that you know you can reproduce from the dataset available (these may be presented in the “methods” section of the article text or tables and can include sample size and participant characteristics for human subjects research like age, gender, race/ethnicity of participants, etc.)</li>
-<li>Any additional statistics or plots that should be part of a good EDA as covered in class</li>
-<li>A thoughtful discussion of any issues you identified in your EDA that could impact your ability to replicate any downstream analyses (i.e., missing data? Or numbers of subjects don’t match? Basic statistics like means/sds are off? Key variables are missing? Unexpected values present in a variable that you can’t interpret?)</li>
-</ul>
 </div>
-<div id="replication-report" class="section level2">
-<h2>Replication report</h2>
-<p>Each team has already discussed the scope of your replication in a one-on-one meeting with Alison. The scope was intentionally limited to those analyses/results that are based on the general linear model (t-tests, linear regression, Analysis of Variance).</p>
-<p>You should attempt to replicate every result, table, and figure in the original paper that is relevant to that analysis, as well as any analyses reported in text.</p>
-<p>Do not spend too much time on layout or formatting. So, if your figure has legends in a different place or uses different colors in your plot or if a table has a certain formatting, don’t worry about replicating every last detail- what is important is that you attempt to replicate the content.</p>
-</div>
-<div id="extension-report" class="section level2">
-<h2>Extension report</h2>
-<p>Your extension involves going beyond the original published article, using the same data. Your extension must be well-reasoned, with a sound research question that is clearly stated, and must include at least 2 of 3 of the following possible <em>extension</em> pieces:</p>
-<ul>
-<li>A plot</li>
-<li>A data summary table</li>
-<li>An additional analysis</li>
-</ul>
-</div>
-</div>
-<div id="presentation" class="section level1">
-<h1>Presentation</h1>
+<div id="p5-presentation" class="section level1">
+<h1>P5: Presentation</h1>
 <p>At the end of the quarter, you and your partner(s) will present your project to the class. The goal of your presentation is to teach the class about your replication project, explain what you have learned, and reflect on the process. Each group will do a 20-minute presentation; here’s a rough outline (but you can tailor it to your specific project):</p>
 <ul>
 <li>Summary of the paper you replicated (including simple research questions, definition of key constructs, and brief overview of measurement methods) (3 minutes)</li>
