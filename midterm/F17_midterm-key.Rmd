@@ -1,0 +1,641 @@
+---
+title: "Math 530-630 Midterm Exam"
+subtitle: "Fall 2017"
+author: "Alison Presmanes Hill"
+date: "Due: 11/10/2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r setup, include = FALSE}
+library(knitr)
+knitr::opts_chunk$set(include = FALSE, eval = FALSE)
+```
+
+To turn in, please submit 2 files: one is the raw .Rmd file and the other is a single knitted PDF file. For the multiple choice, please clearly indicate the problem number and your answer on separate lines as in:
+
+1. a
+2. b
+3. c
+
+You may include R chunks for the multiple choice problems if you like, but partial credit will not be given.
+
+#Key Terms You Should Know
+> __Alpha-level ($\alpha$)__: probability of making a Type I error; that is, rejecting the null hypothesis when it is in fact true (e.g., a test indicates that a man is pregnant)
+
+> __Alternative Hypothesis__ ($H_A$ or $H_1$): the prediction that there will be an effect.
+
+> __Critical Value(s)__: the value of a given test statistic that corresponds to a rejection point- the point at which you determine to reject the null hypothesis. The critical value defines the boundary of the rejection region for $H_0$. This value depends on the significance level, $\alpha$, and whether the test is one-sided or two-sided.
+
+> __Null Hypothesis__ ($H_0$): the reverse of the alternative hypothesis that your prediction is wrong and the predicted effect does not exist.
+
+#Free Answer Questions
+
+Grading of the free-answer problems will resemble that of the homeworks (3 pts per question, total of 15 pts for this section):
+
+  * 3 (Exceptional): answer is thorough, concise, and clearly demonstrates ability to analyze and interpret statistics as well as theoretical understanding of statistical concepts
+  * 2 (Adequate): answer addresses the question with moderate inaccuracies in analysis and/or interpretation, or offers a correct but incomplete answer 
+  * 1 (Inadequate): answer attempts to address question with substantial inaccuracies in analysis and/or interpretation
+  * 0 (Insufficient): answer does not attempt to address question or answer is insufficient to grade
+
+
+1. The probability density function of a random variable $X$ is given by:
+$$f(x) = \begin{cases} 
+  cx, & 0 < x < 4 \\
+  0, & \textrm{otherwise}
+  \end{cases}$$
+  
+    a. find $c$
+    b. find the cumulative distribution function $F(x)$.
+    c. Compute $P(1 <  X < 3)$
+
+```{r}
+Continuous, PDF -> CDF
+
+2.5.6 from 2015 textbook.
+
+a) 
+\[
+\begin{aligned}
+\int_{0}^{4} cx dx &= 1 \\
+  8c &= 1 \\
+  c &= \frac{1}{8}
+\end{aligned}
+\]
+
+b) 
+As $\int \frac{1}{8} x dx$ is $\frac{x^{2}}{16}$,
+
+| $x$   |   $F(X)$   |
+|-------|------------|
+| $x<0$ |  0         |
+| $0 \leq x \leq 4$ | $\frac{x^{2}}{16}$ |
+| $x>4$ | 1 |
+
+
+c) 
+\[
+\begin{aligned}
+P(1 < x < 3) &= F(3) - F(1) \\
+  &= \frac{9}{16} - \frac{1}{16} \\
+  &= \frac{1}{2}
+\end{aligned}
+\]
+```
+
+a) 
+\[
+\begin{aligned}
+\int_{0}^{4} cx dx &= 1 \\
+  8c &= 1 \\
+  c &= \frac{1}{8}
+\end{aligned}
+\]
+
+b) 
+As $\int \frac{1}{8} x dx$ is $\frac{x^{2}}{16}$,
+
+| $x$   |   $F(X)$   |
+|-------|------------|
+| $x<0$ |  0         |
+| $0 \leq x \leq 4$ | $\frac{x^{2}}{16}$ |
+| $x>4$ | 1 |
+
+
+c) 
+\[
+\begin{aligned}
+P(1 < x < 3) &= F(3) - F(1) \\
+  &= \frac{9}{16} - \frac{1}{16} \\
+  &= \frac{1}{2}
+\end{aligned}
+\]
+
+
+2. A friend claims that she has drawn a random sample of size 30 from the exponential distribution with $\lambda = \frac{1}{10}$. The mean of her sample is 12. 
+
+    a. What is the expected value of a sample mean? (hint: https://en.wikipedia.org/wiki/Exponential_distribution#Mean.2C_variance.2C_moments_and_median)
+    b. Run a simulation by drawing 1000 random samples, each of size 30 from Exp(1/10), and then compute the mean. What proportion of the sample means are as large or larger than 12?
+    c. Is a mean of 12 unusual for a sample of size 30 from Exp(1/10)?
+
+```{r}
+This is C&H Chapter 4, problem 12.  p.93
+```
+
+
+
+
+
+3. A researcher believes that in recent years women have been getting taller. She knows that 10 years ago the average height of young adult women living in her city was 63 inches ($\sigma = 3$). She randomly samples eight young adult women currently residing in her city and measures their heights. The following data are obtained (Height, in inches): 64, 66, 68, 60, 62, 65, 66, 63
+  
+    a. What is the alternative hypothesis? (In evaluating this experiment, assume a non-directional hypothesis is appropriate because there are insufficient theoretical and empirical bases to warrant a directional hypothesis.)
+    b. What is the null hypothesis?
+    c. Using the generic test statistic formula given in class ($\frac{\hat{\theta}-{\theta_0}}{SE_{\theta_0}}$), what is the appropriate numerator?
+    d. Using the generic test statistic formula given in class ($\frac{\hat{\theta}-{\theta_0}}{SE_{\theta_0}}$), what is the appropriate denominator?
+    e. Using $\alpha = 0.01$, what is/are the critical value(s) of the test statistic?
+    f. Using $\alpha = 0.01$, what is the conclusion? (i.e. do we reject or fail to reject the null hypothesis, and why?)
+    g. Looking at the actual data, how does the sample standard deviation compare to that of the population?
+    
+```{r}
+Problem 2 from Alisons Psy310 Final Exam Practice Set
+a) In recent years the height of women has been changing. Therefore the sample with \bar{X_{obt}} = 64.25 is a random sample from a population where \mu \neq 63
+
+b) It is reasonable to consider the sample with \bar{X_{obt}} = 64.25 is a random sample from a population where \mu = 63
+
+c) single sample t-test on means
+
+d) S = 2.550, t_{obt} = 1.39
+
+e) df = n-1 = 7. t_{crit} = \pm 3.499
+
+f) since | t_{obt} | < | t_{crit} | , we retain the null hypothesis.
+
+g) (61.1, 67.4)
+
+```
+
+4. The mean height reported by men on the dating website OKCupid is approximately 5 feet 11 inches. For men living in the US, heights are normally distributed with a mean of 5 feet 9 inches, $\sigma$=3 inches. Answer the following:
+
+    a. State the null and alternative hypotheses.
+
+```{r}
+#H0=OKCupid and US men have the same height
+#H1= OKCupid and US men have different heights
+```
+
+    b. What is/are the critical value(s) of that test statistic (assume $\alpha = .05$, 2-tailed)? That is, for which values of the test statistic would you reject the null hypothesis?
+
+```{r}
+ll <- qnorm(.025,69,3)
+ul <- qnorm(.975,69,3)
+cbind(ll,ul)
+```
+
+5. What are the critical values of a t-distributed random variable (`?TDist`) for each of the following values of *N* and $\alpha$ using nondirectional hypotheses (assume testing of means)?
+
+> a. *N*=12; $\alpha$=.05
+> b. *N*=20; $\alpha$=.01
+> c. *N*=2; $\alpha$=.05
+
+> What are the critical values of a t-distributed random variable for each of the following values of *N* and $\alpha$ using a directional hypothesis in the upper tail (assume testing of means)?
+
+> d. *N*=8; $\alpha$=.05
+> e. *N*=15; $\alpha$=.01
+> f. *N*=51; $\alpha$=.025
+
+```{r}
+#a
+cbind(qt(.025,11), qt(.975,11))
+#b
+cbind(qt(.005,19), qt(.995,19))
+#c
+cbind(qt(.025,1), qt(.975,1))
+#d
+qt(.95,7)
+#e
+qt(.99,14)
+#f
+qt(.975,50)
+```
+
+
+# Multiple-Choice Questions (1 pt each)
+
+1. Suppose you have 10 numbers and have computed the mean to be 8.0. You then discover that the last number in the data was entered incorrectly. It was entered as 8.0 when it should have been 4.0. If you replace the incorrect value (8.0) with the correct one (4.0), and recompute the mean, you will obtain a new mean of:
+
+    a. It is impossible to determine
+    b. 6.6
+    c. 8.6
+    d. 7.6
+    
+```{r}
+Answer: d
+```
+
+    
+2. You have a set of data that have a mean of 50 and a standard deviation of 12. You wish them to have a mean of 65 and a standard deviation of 10, while retaining the shape of the distribution. What values of *a* and *b* in the linear transformation formula *Y = aX + b* will produce a new set of data with the desired mean and standard deviation?
+
+    a. *a* = 0.833, *b* = 23.3
+    b. *a* = 1.83, *b* = -23.3
+    c. *a* = 1.67, *b* = 23.3
+    d. *a* = 0.833, *b* = 46.7
+    e. *a* = 1.2, *b* = 22.3
+
+```{r}
+Answer: a
+```
+    
+3. Jane had a z-score of 1.75 on her statistics midterm. If the class mean is 65.0, and the class standard deviation is 12.0, what was Jane's raw score?
+
+    a. It is impossible to determine
+    b. 66
+    c. 86
+    d. 76
+
+```{r}
+Answer: c
+```
+
+
+4. IQ scores have a distribution that is approximately normal in shape, with a mean of 100 and a standard deviation of 15 in the general population. Assuming the normal distribution is a good approximation, what proportion of the general population has IQ scores between 79.0 and 109.0?
+
+    a. 0.645
+    b. 0.745
+    c. 0.545
+    d. 0.709
+    e. None of the above answers are correct
+
+```{r}
+Answer: a
+```
+
+```{r}
+pnorm(109, 100, 15) - pnorm(79, 100, 15)
+```
+
+5. You have 10 numbers with a sample mean of 9.0 and a sample variance of 11.0. You discover that the last number in the list was recorded as 8.0 when it should have been recorded as 12.0. If you correct your error and correctly recompute the sample variance, what value will you obtain?
+
+    a. 11.71
+    b. 11.0
+    c. 10.54
+    d. 13.01
+    e. None of the above answers are correct
+    
+```{r}
+Answer: a
+```
+
+
+
+6. If $\alpha$ = 0.01, then the probability of a correct acceptance of a true statistical null hypothesis is:
+
+    a. 0.0001
+    b. $\beta$
+    c. 0.99
+    d. 0
+    e. It cannot be determined from the information provided
+
+```{r}
+Answer: c
+```
+
+7. Given the following probability distribution for the random variable *X*, the variance of *X* is:
+
+    a. 3.5563
+    b. 3.7524
+    c. 2.95
+    d. 1.575
+    e. 1.8475
+
+| *x* | $P_X(x)$ | 
+|:---:|:--------:|
+|   1 |     0.1  |
+|  2  |     0.15 |
+|    3|      0.2 |
+|    4|      0.2 |
+|    5|     0.35 |
+
+
+
+```{r}
+Answer: e
+```
+
+8. Given the following probability distribution for the random variable *X*, the expected value of *X* is:
+
+    a. 2.48
+    b. 3.68
+    c. 3.58
+    d. 3.48
+
+| *x* | $P_X(x)$ | 
+|:---:|:--------:|
+|   1 |     0.1  |
+|  2  |     0.2  |
+|    3|      0.2 |
+|    4|      0.12|
+|    5|     0.38 |
+
+
+
+```{r}
+Answer: d
+```
+
+9. The sampling distribution of the sample mean based on *N* iid observations
+
+    a. converges asymptotically to a normal distribution in shape under the conditions of the Central Limit Theorem
+    b. has a variance of $\sigma^2/N$ for any population distribution
+    c. is always exactly normal, for any sample size, when the population distribution is normal 
+    d. all of the above answers are correct
+
+```{r}
+Answer: d
+```
+
+
+
+10. If one draws all possible samples for various values of *N* from the same population of raw scores, as *N* increases:
+
+    a. The standard error of the mean increases
+    b. The standard error of the mean stays the same
+    c. The standard error of the mean decreases
+    d. The standard error of the mean cannot be calculated
+
+```{r}
+Answer: c
+```
+
+11. If one draws all possible samples for various values of *N* from the same population of raw scores, as *N* increases:
+
+    a. The mean of the sampling distribution of the mean increases
+    b. The mean of the sampling distribution of the mean stays the same
+    c. The mean of the sampling distribution of the mean decreases
+    d. None of the above
+
+```{r}
+Answer: b
+```
+
+12. In cases where *N* > 1, the relationship between the raw score population standard deviation and the standard error is:
+
+    a. The standard error is greater than the population standard deviation
+    b. The standard error is less than the population standard deviation
+    c. The standard error equals the population standard deviation
+    d. The standard error is the population standard deviation
+
+```{r}
+Answer: b
+```
+
+
+13. The variance can be thought of as:
+
+    a. half the range
+    b. the sum of squared deviations from the mean
+    c. the average deviation
+    d. the average squared deviation from the mean
+
+```{r}
+Answer: d
+```
+
+14. What would happen to the mean of a distribution of scores if the number 10 is added to each score?
+
+    a. It would stay the same
+    b. It increases by 10
+    c. It will become 10 times as large
+    d. It will increase, but the amount depends on the shape of the distribution
+
+```{r}
+Answer: b
+```
+
+15. What would happen to the standard deviation of a distribution of scores if the number 10 is added to each score?
+
+    a. It would stay the same
+    b. It increases by 10
+    c. It will become 10 times as large
+    d. It will increase, but the amount depends on the shape of the distribution
+
+```{r}
+Answer: a
+```
+
+16.  What would happen to the mean of a distribution of scores if each score is multiplied by 2?
+
+    a. It would stay the same
+    b. It increases by 2
+    c. It will become twice as large
+    d. It will increase, but the amount depends on the shape of the distribution
+
+```{r}
+Answer: c
+```
+
+17. What would happen to the variance of a distribution of scores if each score is multiplied by 2?
+
+    a. It would stay the same
+    b. It will become twice as large
+    c. It will become four times as large
+    d. It will increase, but the amount depends on the shape of the distribution
+
+```{r}
+Answer: c
+```
+
+18. A researcher has data for two variables, *x* and *y*. First, she converts both variables to z-scores with a mean of 0 and standard deviation of 1, and calls them $z_x$ and $z_y$. Next, she takes the mean of both z-scores and calls that new variable $ave_z$. What is the mean and standard deviation of the $ave_z$ variable?
+
+    a. mean = 0; standard deviation = 1
+    b. mean = 0; standard deviation approximately 1
+    c. mean = 0; standard deviation > 1
+    d. Cannot be determined from the information given
+
+```{r}
+Answer: c
+```
+
+```{r}
+x <- c(0, -1, 1, -5, 10)
+y <- c(-2, -3, 5, -7, 7)
+z_x <- scale(x)
+z_y <- scale(y)
+my_z <- data.frame(z_x, z_y)
+library(dplyr)
+options(scipen=999)
+my_z %>% 
+  mutate(ave_z = z_x + z_y / 2) %>% 
+  summarise_each(funs(mean, sd))
+```
+
+19. The sampling distribution and standard error of a statistic can be calculated by:
+
+    a. exhaustive and exact calculations where formula solutions are possible
+    b. simulation
+    c. formula approximations
+    d. repeatedly taking random samples of a given size from a population
+    e. all of the above
+
+```{r}
+Answer: e
+```
+
+
+
+20. IQ scores have a distribution that is approximately normal in shape, with a mean of 100 and a standard deviation of 15. What percentage of scores is at or above an IQ of 116?
+
+> a. 12.464
+> b. 14.306
+> c. 15.737
+> d. 16.355
+> e. None of the above answers are correct.
+
+```{r}
+#the answer is b
+1-pnorm(116,100,15)
+```
+
+21. Suppose you want to test the null hypothesis that $\mu$=100 with a sample size of *n*=25 and an $\alpha$=.05 using a t-statistic, which you know follows the Student t-distribution (`?TDist`). What will the critical value(s) for the *t* statistic be? That is, for which values of the *t* statistic will you reject the null hypothesis?
+
+> a. $\leq$ -2.06, $\geq$ 2.06
+> b. $\leq$ -1.71, $\geq$ 1.71
+> c. $\leq$ -2.06, $\geq$ 1.85
+> d. $\leq$ -1.85, $\geq$ 2.06
+> e. None of the above answers are correct.
+
+```{r}
+# a
+ul <- qt(.975, 24)
+ll <- qt(.025, 24)
+cbind(ul,ll)
+```
+
+22. Could the sample *X*={21,21,21,20,22,20,22} reasonably have been drawn from a normal population with a mean of 20 and standard deviation of 1.5 with $\alpha$=0.05 (two-tailed)?
+
+> a. yes
+> b. no
+> c. cannot be tested with *z* test
+> d. insufficient information
+
+```{r}
+#a
+```
+
+---
+
+For the last set of questions, suppose you have four children in a reading group (Beth, Marianne, Steven, Joel) and you randomly pick one child to lead the discussion in group each day of a 5-day week. Furthermore, we define the outcome of each day's selection to be binary: Steven leads the discussion or he doesn't.
+
+23. The number of times Steven leads the discussion in a week would be the:
+
+    a. probability distribution for this experiment
+    b. probability of an outcome
+    c. constant in this experiment
+    d. random variable in this experiment
+    
+```{r}
+Answer: d
+```
+
+24. The probability that Steven leads the discussion all 5 days in a week is the:
+
+    a. expected value
+    b. probability distribution
+    c. probability of a simple event
+    d. random variable
+    
+```{r}
+Answer: c
+```
+
+25. If we could replicate this experiment many, many times, the average number of times that Steven leads the discussion in a week would be the:
+
+    a. expected value
+    b. probability distribution
+    c. probability of an outcome
+    d. random variable
+    
+```{r}
+Answer: a
+```
+
+26. If we found the probability of Steven leading the discussion zero times, one time, two times, three times, four times, and five times, the set of six probabilities would be the:
+
+    a. expected value
+    b. probability distribution
+    c. probability of an outcome
+    d. random variable
+    
+```{r}
+Answer: b
+```
+
+27. Monday's selection of a discussion leader could be considered a ____, while the selections of discussion leaders for the week constitute a ____:
+
+    a. binomial experiment, bernoulli trial
+    b. bernoulli trial, binomial experiment
+    c. neither
+    
+```{r}
+Answer: b
+```
+
+
+28. What is the probability that Steven would be selected all 5 days of the week?
+
+    a. .00000000000000
+    b. .0009765625
+    c. .0039065500
+    d. .25
+    
+```{r}
+Answer: b
+```
+
+```{r}
+.25^5
+dbinom(5, 5, .25) #or
+1 - pbinom(4, 5, .25) #or
+pbinom(4, 5, .25, lower.tail = FALSE)
+```
+
+29. What is the expected number of times that Steven would be selected?
+
+    a. 0.00
+    b. 1.00
+    c. 1.25
+    d. 2.50
+    
+```{r}
+Answer: c
+```
+
+```{r}
+n <- 5
+p <- .25
+n*p # definition of expected value for a binomial rv
+```
+
+---
+
+30. Using the following code, run a permutation test with the hypothesis that mean Hotwing consumption is different for men than for women (assume $\alpha = .05$, 2-tailed). Does the data support your hypothesis, and what is the associated p-value?
+
+> a. The data supports $H_A$, p = 0.00078
+> b. The data supports $H_A$, p = 0.00156
+> c. We fail to reject $H_0$, p = 0.156
+> d. We fail to reject $H_0$, p = 0.780
+
+```{r eval = FALSE, include = TRUE}
+#install.packages("resampledata")
+library(resampledata)
+library(dplyr)
+glimpse(Beerwings)
+# observed mean difference
+Beerwings %>% 
+  group_by(Gender) %>% 
+  summarise(mean_wings = mean(Hotwings)) 
+```
+
+Run the permutation:
+```{r eval = FALSE, include = TRUE}
+set.seed(0)
+B <- 10^5-1  #set number of times to repeat this process
+result <- numeric(B) # space to save the random differences
+for(i in 1:B){
+  index <- sample(30, size=15, replace = FALSE) # sample of numbers from 1:30
+  result[i] <- mean(Beerwings$Hotwings[index]) - mean(Beerwings$Hotwings[-index])
+}
+```
+
+
+```{r}
+observed <- 14.5333- 9.3333 
+min_sum <- min(sum(result >= observed), sum(result <= observed))
+#Compute P-value
+min_p <- sum(min_sum + 1)/(B + 1)
+2*min_p
+```
+
+
+
+
+

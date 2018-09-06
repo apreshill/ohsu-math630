@@ -1,0 +1,289 @@
+---
+title: "Math 530-630 Midterm Exam"
+subtitle: "Fall 2016"
+author: "Alison Hill & Joel Adams"
+date: "11/9/2016"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r setup, include = FALSE}
+library(knitr)
+knitr::opts_chunk$set(include = TRUE, eval = TRUE)
+```
+
+#Free Answer Questions
+
+Grading of the free-answer problems will resemble that of the homeworks:
+
+  * 2 points for the initial answer being "in-good-faith"
+  * 3 points for the quality of the final answer / discussion.
+    * 3 (Exceptional): answer is thorough, concise, and clearly demonstrates ability to analyze and interpret statistics as well as theoretical understanding of statistical concepts
+    * 2 (Adequate): answer addresses the question with moderate inaccuracies in analysis and/or interpretation, or offers a correct but incomplete answer 
+    * 1 (Inadequate): answer attempts to address question with substantial inaccuracies in analysis and/or interpretation
+    * 0 (Insufficient): answer does not attempt to address question or answer is insufficient to grade
+
+
+##Probability
+
+1. The probability density function of a random variable $X$ is given by:
+$$f(x) = \begin{cases} 
+  cx, & 0 < x < 4 \\
+  0, & \textrm{otherwise}
+  \end{cases}$$
+  
+    a. find $c$
+    b. find the cumulative distribution function $F(x)$.
+    c. Compute $P(1 <  X < 3)$
+
+###Answer
+
+a) 
+\[
+\begin{aligned}
+\int_{0}^{4} cx dx &= 1 \\
+  8c &= 1 \\
+  c &= \frac{1}{8}
+\end{aligned}
+\]
+
+b) 
+As $\int \frac{1}{8} x dx$ is $\frac{x^{2}}{16}$,
+
+| $x$   |   $F(X)$   |
+|-------|------------|
+| $x<0$ |  0         |
+| $0 \leq x \leq 4$ | $\frac{x^{2}}{16}$ |
+| $x>4$ | 1 |
+
+
+c) 
+\[
+\begin{aligned}
+P(1 < x < 3) &= F(3) - F(1) \\
+  &= \frac{9}{16} - \frac{1}{16} \\
+  &= \frac{1}{2}
+\end{aligned}
+\]
+
+
+
+## Sampling
+
+*Hint: This problem reference ideas and methods from Chapter 4*
+
+2. A friend claims that she has drawn a random sample of size 30 from the exponential distribution with $\lambda = \frac{1}{10}$. The mean of her sample is 12.
+
+    a. What is the expected value of a sample mean?
+    b. Run a simulation by drawing 1000 random samples, each of size 30 from Exp(1/10), and then compute the mean. What proportion of the sample means are as large or larger than 12?
+    c. Is a mean of 12 unusual for a sample of size 30 from Exp(1/10)?
+
+
+###Answer
+
+a) $E[sample mean] = E[population mean] = \frac{1}{\lambda} = 10$
+
+b) Answers will vary, but I expect something in the neighborhood of $15 \%$
+
+```{r}
+set.seed(10)
+
+N <- 1000
+my.means<-numeric(N)
+for (i in 1:N)
+{
+  x<-rexp(30, 1/10)
+  my.means[i]<-mean(x)
+}
+
+num_geq_twelve <- sum(my.means >= 12)
+num_geq_twelve
+
+prop_geq_twelve <- num_geq_twelve / N
+prop_geq_twelve
+```
+
+c) My take on this is "not particularly." I'll accept well-reasoned answers.
+
+
+## Bootstrapping
+
+*Hint: This problem reference ideas and methods from Chapter 5*
+
+*Hint: If you want to consistently get the same results while you work, consider using set.seed()*
+
+3. Consider a population that has a normal distribution with mean $\mu = 52$, standard deviation $\sigma = 8$.
+
+    a. The sampling distribution of $\bar{X}$ for samples of size 500 will have what distribution, mean, and standard error?
+
+    b. Use R to draw a random sample of size 500 from this population. What is the mean, standard deviation of this sample?
+
+    c. Compute the bootstrap distribution for your sample and note the bootstrap mean and standard error.
+
+    d. Compare the bootstrap distribution to the theoretical sampling distribution by creating a table like Table 5.2 in Chihara and Hesterberg (p. 104).
+
+###Answer
+a) It will be a normal distribution with mean 52, standard error $\frac{8}{\sqrt{500}} = 0.358$
+
+
+b)
+```{r}
+# setting seed so this is reapeatable
+set.seed(111)
+
+# getting sample of size n=500 from 
+# N(mean=52, sd=8)
+mysample <- rnorm(500, 52, 8)
+summary(mysample)
+mean(mysample)
+sd(mysample)
+
+hist(mysample)
+```
+
+
+c) 
+```{r}
+#now bootstrap from mysample
+N = 10^5
+boot <- numeric(N)
+set.seed(222)
+for (i in 1:N)
+{
+   boot[i]<-mean(sample(mysample, 500, replace=TRUE))
+}
+
+mean(boot)
+sd(boot)
+hist(boot)
+```
+
+d) 
+
+\begin{center}
+\begin{tabular}{l r r }
+  & mean & standard dev \\
+\hline
+Population & 52 & 8 \\
+Sampling distr. of $\bar{X}$ & 52 & 0.358 \\
+Sample & 51.9 & 8.06 \\
+Bootstrap distr. & 51.9 & 0.359
+\end{tabular}
+\end{center}
+
+
+##Hypothesis Testing, Confidence Interval
+
+*Hint: These problems reference ideas and methods from Chapters 7, 8*
+
+4. A researcher believes that in recent years women have been getting taller. She knows that 10 years ago the average height of young adult women living in her city was 63 inches. The standard deviation is unknown. She ranomly samples eight young adult women currently residing in her city and measures their heights. The following data are obtained:
+>> Height (in inches): 64, 66, 68, 60, 62, 65, 66, 63
+  
+    a. What is the alternative hypothesis? (In evaluating this experiment, assume a non-directional hypothesis is appropriate because there are insufficient theoretical and empirical bases to warrant a directional hypothesis.)
+    b. What is the null hypothesis?
+    c. What kind of test are you going to perform?
+    d. Calculate the appropriate obtained statistic.
+    e. What is the number of degrees of freedom that is associated with this statistic? And (using $\alpha = 0.01$), what is/are the critical value(s)?
+    f. Using $\alpha = 0.01$, what is the conclusion? (i.e. do we retain or reject the null hypothesis, and why?)
+    g. Calculate the 99\%-confidence interval around the obtained mean.
+    
+###Answer
+a) In recent years the height of women has been changing. Therefore the sample with $\bar{X} = 64.25$ is a random sample from a population where $\mu \neq 63$
+
+```{r}
+X <- c(64, 66, 68, 60, 62, 65, 66, 63)
+X_bar <- mean(X)
+X_bar
+```
+
+b) It is reasonable to consider the sample with $\bar{X} = 64.25$ is a random sample from a population where $\mu = 63$
+
+c) single sample t-test on means
+
+d) $S = 2.550$, and $t = 1.39$
+```{r}
+S <- sqrt(sum((X - X_bar)^2) / 7)
+S
+t <- (X_bar - 63) / (S/sqrt(8))
+t
+```
+
+
+e) $df = n-1 = 7$. and $t_{crit} = \pm 3.499$
+
+```{r}
+t_crit = abs(qt(.01/2, 7))
+t_crit
+```
+
+
+f) since $| t_{obt} | < | t_{crit} |$ , we retain the null hypothesis.
+
+
+g) (61.1, 67.4)
+
+```{r}
+the_amount <- t_crit * (S / sqrt(8))
+the_amount
+
+#lower
+X_bar - the_amount
+#upper
+X_bar + the_amount
+```
+
+
+
+
+
+5. Suppose you have the following information concerning the two independent groups below, and
+you want to test if the means of the two groups differ.
+
+    a. Is the alternative hypothesis directional or nondirectional?
+    b. What is the alternative hypothesis?
+    c. What is the null hypothesis?
+    d. What kind of test are you going to perform?
+    e. Using $\alpha$ = 0.05, what is/are the critical value(s)? Degrees of freedom?
+    f. Calculate the appropriate test statistic.
+    g. Using $\alpha = 0.05$, what is the conclusion?
+
+| Group 1               | Group 2               |
+| --------------------- |-----------------------|
+| Mean 1 = 15.6         | Mean 2 = 13.2         |
+| Standard dev 1 = 1.4  | Standard dev 2 = 2.7  |
+| $n_{1}$ = 10          | $n_{2}$ = 10          |
+
+###Answer
+
+a) Nondirectional
+
+b) The means of the two groups differ, $\mu_{1} \neq \mu_{2}$
+
+c) The means of the two groups DO NOT differ, $\mu_{1} = \mu_{2}$
+
+d) Two sample t-test for means.
+
+e) Degrees of freedom $= n_{1} + n_{2} -2 = 18$, critical value $= \pm 2.101$.
+
+```{r}
+t_crit = abs(qt(.05/2, 18))
+t_crit
+```
+
+f) $t = 2.495$
+
+```{r}
+X_bar = 15.6
+Y_bar = 13.2
+
+s1 = 1.4
+s2 = 2.7
+
+n1 = 10
+n2 = 10
+
+t <- (X_bar - Y_bar) / (sqrt( (s1^2/n1) + (s2^2/n2)))
+t
+```
+
+g) as $t = 2.495 > t_{crit} = 2.101$ we reject the null hypothesis.
