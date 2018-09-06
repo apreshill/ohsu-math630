@@ -116,6 +116,8 @@ For the midterm, you will work individually on a take-home exam that will cumula
 
 For the final project, you will reproduce and extend a published research article. Projects will be done in teams of two or more depending on class size; the same grade will be given to all team members unless there is a clear discrepancy in labor that is brought to the instructor's attention before the final report is due. 
 
+Read more about the [final project here](final_project.html)
+
 # Academic Dishonesty and Student Behavior 
 
 Students are expected to follow University policy with regards to issues of academic dishonesty (e.g., cheating or plagiarism) and proper conduct in the classroom, as detailed in the Student Handbook. Violation of academic integrity is considered a serious offense by the University and is treated accordingly. Violations include, but are not limited to, cheating on exams, having unauthorized possession of exams, and submitting the work of another person as your own. Disciplinary action for violation of these policies will be decided on a case-by-case basis and will be in accord with University policy.
