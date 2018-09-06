@@ -1,0 +1,149 @@
+---
+title: "Syllabus for Probability & Statistical Inference for Scientists and Engineers"
+author: 'Instructor: Rebecca Lunsford'
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+subtitle: MATH 530/630
+---
+
+
+This course will introduce fundamental concepts underlying statistical data display, analysis, inference, and statistical decision making. The topics include presentation and description of data, basic concepts of probability, Bayes' theorem, discrete and continuous probability distributions, estimation, sampling distributions, classical tests of hypotheses on means, variances and proportions, and linear models. One of the key notions underlying this course is the role of mathematical modeling in science and engineering with a particular focus on the need for an understanding of variability and uncertainty. Examples are chosen from a wide range of engineering, clinical, and social domains. 
+
+# Prerequisites
+
+Although there are no formal prerequistes for this class, this course will include topics in which students will use various mathematical tools. As such, students must be very comfortable with the following:
+
+|Topic| Mathematical Tool       |
+|----| -----------|
+|Probability  | Set theory  |
+|Discrete random variables    | Summation algebra |
+|Continuous random variables   | Univariate calculus  |
+|Multivariate random variables    | Multivariate calculus |
+|Statistical inference  | All of the above  |
+
+What does this mean? It means that you should feel comfortable being asked to review any of the above topics, and to apply them in this course.
+
+
+# Textbook
+
+Readings will primarily be from two free, open-source, completely online textbooks:
+
+1. [**MODERN DIVE into Data with R (MD)**](http://moderndive.com) 
+1. [**R for Data Science (R4DS)**](http://r4ds.had.co.nz) 
+
+Reading assignments will be documents that are freely available online or will be provided to you. Students will also be expected to find relevant materials using Google as well as online help forums such as stackoverflow.com.
+
+# Grades
+
+Work in this class consists of the following four activities:
+
+
+|Activity| Submissions     | Points per submission | Total points |
+|--------| ----------------|-----------------------|--------------|
+|Homework| 4 (drop lowest) |15                     | 45           |
+|Lab     | 3               |15                     | 45           |
+|Midterm | 1               |45                     | 45           |
+|Project | 5               |5 / 10 / 15 / 20 / 25 / 25 | 100    |
+
+The total points possible in this course is 235.
+
+The following minimum grades will be guaranteed:
+
+|Points   | Minimum grade |
+|----| -------------------------|
+|211  | A- |
+|188  | B- |
+|164  | C- |
+|141  | D- |
+
+
+## Homework
+
+A total of 4 homeworks will be assigned; your lowest score will be dropped at the end of the quarter. Some homeworks will require you to use R to analyze data. Although no prior R experience is required for this course, be prepared to do *a lot* of self-guided learning. Students are expected to run R on their own computer or a computer they have plenty of access to and control over. Please attempt to do all homeworks on your own, but you may work with other students. However, you may not submit homework assignments as a group. You should submit your own original work. Please bear in mind that when a homework involves R, you will lose points for any of the following:
+
+* Printing entire dataframes in the R Markdown file
+* Code with no comments
+* Code which produces an error message
+
+You will have 1 week to complete each homework assignment, and your initial solutions are due by 2pm on the due date (at the start of class on Thursdays). Late homeworks will not be accepted. If you have not turned in a homework by the start of class on the due date, the solution key will be made public and you can do a self-assessment, but you will lose the ability to get 2 points per problem for your "good faith effort".
+
+After you turn in your initial solutions and are provided with the answer key, you will hand in a self-assessment by the start of the next class (2pm on the following Tuesday). Your self-assessment must:
+
+- Include an assessment of the accuracy and completeness of your "initial solutions"
+- Give attributions as appropriate to other students who helped you 
+
+Homework grades will be based on:
+
+- Was your initial solution a good faith effort
+- Did you catch all of your own errors in your self-assessment
+- Is your updated solution correct
+
+## Grading rubric for the homework is 5 points per question, scored as follows:
+
+* 2 points for each initial solution being “in-good-faith”
+
+    - 2: answer reflects strong independent problem solving, with clearly thought out attempts to approach the problem and a diligent and honest effort to find the solution
+    - 1: answer reflects some attempt to approach the problem, but approach appears to be superficial and lacks depth of analysis
+
+* 3 points for the quality of the final answer / discussion.
+
+    - 3 (Exceptional): answer is thorough, concise, and clearly demonstrates ability to analyze and interpret statistics as well as theoretical understanding of statistical concepts
+    - 2 (Adequate): answer addresses the question with moderate inaccuracies in analysis and/or interpretation, or offers a correct but incomplete answer
+    - 1 (Inadequate): answer attempts to address question with substantial inaccuracies in analysis
+and/or interpretation
+    - 0 (Insufficient): answer does not attempt to address question or answer is insufficient to grade
+    
+### All of this means that:
+
+* If you (a) submit perfectly accurate initial solutions OR (b) submit a perfectly accurate self-assessment, you get 100% of the points either way. 
+* If you simply cannot submit any homework solutions on time, after the homework due date, you will receive the solutions key and can submit a perfect self-assessment for a max score of 60% (3 out of 5 points per problem). We feel this is fair given that you did not attempt a good faith effort, and given that we also will drop your lowest homework grade. 
+
+### What is a "good faith effort"?
+
+Simply submitting nonsense or saying “I can’t do this” for each problem will not meet our criteria for a good faith effort, because there is no attempt on your part to show us why you are struggling, what you tried but didn’t work, what specific part of the problem you got stuck on, which other examples in the text/lecture you tried to work through to get a grasp on the problem, etc. This is especially true if you don’t attend any office hours, post on Sakai, or otherwise seek out help *before* the due date. The good faith effort is just that- we are interested in seeing evidence of a diligent and honest effort on your part, made with deliberate intention, to understand the problem and attempt an answer.
+
+
+
+
+## Midterm
+
+For the midterm, you will work individually on a take-home exam that will cumulatively cover topics in class. You may use the following resources: your class notes, your textbook, your previous homeworks, the Internet. You may not use the following resources: anything that is alive or communicates back to you (including but not limited to other students, professors, professional statisticians, tutors, parents, email or phone contacts, online forums or chat rooms, etc.). You should submit your own original work. 
+
+
+## Project
+
+For the final project, you will reproduce and extend a published research article. Projects will be done in teams of two or more depending on class size; the same grade will be given to all team members unless there is a clear discrepancy in labor that is brought to the instructor's attention before the final report is due. 
+
+# Academic Dishonesty and Student Behavior 
+
+Students are expected to follow University policy with regards to issues of academic dishonesty (e.g., cheating or plagiarism) and proper conduct in the classroom, as detailed in the Student Handbook. Violation of academic integrity is considered a serious offense by the University and is treated accordingly. Violations include, but are not limited to, cheating on exams, having unauthorized possession of exams, and submitting the work of another person as your own. Disciplinary action for violation of these policies will be decided on a case-by-case basis and will be in accord with University policy.
+
+## Students with Disabilities
+
+Our program is committed to all students achieving their potential. If you have a disability or think you may have a disability (physical, learning, hearing, vision, psychological) which may need a reasonable accommodation please contact Student Access at (503) 494-0082 or e-mail at orchards@ohsu.edu to discuss your needs. You can also find more information at www.ohsu.edu/student-access. Because accommodations can take time to implement, it is important to have this discussion as soon as possible. All information regarding a student’s disability is kept in accordance with relevant state and federal laws.
+
+## Using code from others
+
+You are welcome to use code written by other people, including snippets of code you find online and code written by people who are helping you. I highly recommend Cookbook for R online, Stack Overflow, and GitHub for help. However, if you are using code from someone else, remember to give credit where it is due. 
+
+## OHSU Grade Submission Policy
+
+Graduate Studies in the OHSU School of Medicine is committed to providing grades to students in a timely manner. Course instructors will provide students with information in writing at the beginning of each course that describes the grading policies and procedures including but not limited to evaluation criteria, expected time needed to grade individual student examinations and type of feedback they will provide. Class grades are due to the Registrar by the Friday following the week of finals. 
+
+
+## OHSU Commitment to Equity and Inclusion
+
+OHSU is committed to creating and fostering a learning and working environment based on open communication and mutual respect. If you encounter sexual harassment, sexual misconduct, sexual assault, or discrimination based on race, color, religion, age, national origin or ancestry, veteran or military status, sex, marital status, pregnancy or parenting status, sexual orientation, gender identity, disability  or any other protected status please contact the Affirmative Action and Equal Opportunity Department at 503-494-5148 or aaeo@ohsu.edu. Inquiries about Title IX compliance or sex/gender discrimination and harassment may be directed to the OHSU Title IX Coordinator at 503-494-0258 or titleix@ohsu.edu.
+
+
+
+
+
+
+
+
+
+
+

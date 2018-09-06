@@ -10,8 +10,8 @@ navbar:
   - text: Due Dates
     href: due.html
     icon: fa-calendar-check
-  - text: Grades
-    href: cm.html
+  - text: Syllabus
+    href: syllabus.html
     icon: fa-key
   - text: DataCamp  
     href: cm.html

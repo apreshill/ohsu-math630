@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Instructor: Rebecca Lunsford" />
+
+<meta name="date" content="2018-09-06" />
+
+<title>Syllabus for Probability &amp; Statistical Inference for Scientists and Engineers</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MATH 630</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="cm.html">
+    <span class="fa fa-chalkboard-teacher"></span>
+     
+    Class Meetings
+  </a>
+</li>
+<li>
+  <a href="due.html">
+    <span class="fa fa-calendar-check"></span>
+     
+    Due Dates
+  </a>
+</li>
+<li>
+  <a href="syllabus.html">
+    <span class="fa fa-key"></span>
+     
+    Syllabus
+  </a>
+</li>
+<li>
+  <a href="cm.html">
+    <span class="fa fa-user-ninja"></span>
+     
+    DataCamp
+  </a>
+</li>
+<li>
+  <a href="https://sakai.ohsu.edu/portal/site/CONJ-620-1-2040-Su18">
+    <span class="fa fa-university"></span>
+     
+    Sakai
+  </a>
+</li>
+<li>
+  <a href="cm.html">
+    <span class="fa fa-glasses"></span>
+     
+    Handouts
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-cogs"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Syllabus for Probability &amp; Statistical Inference for Scientists and Engineers</h1>
+<h3 class="subtitle"><em>MATH 530/630</em></h3>
+<h4 class="author"><em>Instructor: Rebecca Lunsford</em></h4>
+<h4 class="date"><em>2018-09-06</em></h4>
+
+</div>
+
+
+<p>This course will introduce fundamental concepts underlying statistical data display, analysis, inference, and statistical decision making. The topics include presentation and description of data, basic concepts of probability, Bayes’ theorem, discrete and continuous probability distributions, estimation, sampling distributions, classical tests of hypotheses on means, variances and proportions, and linear models. One of the key notions underlying this course is the role of mathematical modeling in science and engineering with a particular focus on the need for an understanding of variability and uncertainty. Examples are chosen from a wide range of engineering, clinical, and social domains.</p>
+<div id="prerequisites" class="section level1">
+<h1>Prerequisites</h1>
+<p>Although there are no formal prerequistes for this class, this course will include topics in which students will use various mathematical tools. As such, students must be very comfortable with the following:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Mathematical Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Probability</td>
+<td>Set theory</td>
+</tr>
+<tr class="even">
+<td>Discrete random variables</td>
+<td>Summation algebra</td>
+</tr>
+<tr class="odd">
+<td>Continuous random variables</td>
+<td>Univariate calculus</td>
+</tr>
+<tr class="even">
+<td>Multivariate random variables</td>
+<td>Multivariate calculus</td>
+</tr>
+<tr class="odd">
+<td>Statistical inference</td>
+<td>All of the above</td>
+</tr>
+</tbody>
+</table>
+<p>What does this mean? It means that you should feel comfortable being asked to review any of the above topics, and to apply them in this course.</p>
+</div>
+<div id="textbook" class="section level1">
+<h1>Textbook</h1>
+<p>Readings will primarily be from two free, open-source, completely online textbooks:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://moderndive.com"><strong>MODERN DIVE into Data with R (MD)</strong></a></li>
+<li><a href="http://r4ds.had.co.nz"><strong>R for Data Science (R4DS)</strong></a></li>
+</ol>
+<p>Reading assignments will be documents that are freely available online or will be provided to you. Students will also be expected to find relevant materials using Google as well as online help forums such as stackoverflow.com.</p>
+</div>
+<div id="grades" class="section level1">
+<h1>Grades</h1>
+<p>Work in this class consists of the following four activities:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Submissions</th>
+<th>Points per submission</th>
+<th>Total points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Homework</td>
+<td>4 (drop lowest)</td>
+<td>15</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td>Lab</td>
+<td>3</td>
+<td>15</td>
+<td>45</td>
+</tr>
+<tr class="odd">
+<td>Midterm</td>
+<td>1</td>
+<td>45</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td>Project</td>
+<td>5</td>
+<td>5 / 10 / 15 / 20 / 25 / 25</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>The total points possible in this course is 235.</p>
+<p>The following minimum grades will be guaranteed:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Points</th>
+<th>Minimum grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>211</td>
+<td>A-</td>
+</tr>
+<tr class="even">
+<td>188</td>
+<td>B-</td>
+</tr>
+<tr class="odd">
+<td>164</td>
+<td>C-</td>
+</tr>
+<tr class="even">
+<td>141</td>
+<td>D-</td>
+</tr>
+</tbody>
+</table>
+<div id="homework" class="section level2">
+<h2>Homework</h2>
+<p>A total of 4 homeworks will be assigned; your lowest score will be dropped at the end of the quarter. Some homeworks will require you to use R to analyze data. Although no prior R experience is required for this course, be prepared to do <em>a lot</em> of self-guided learning. Students are expected to run R on their own computer or a computer they have plenty of access to and control over. Please attempt to do all homeworks on your own, but you may work with other students. However, you may not submit homework assignments as a group. You should submit your own original work. Please bear in mind that when a homework involves R, you will lose points for any of the following:</p>
+<ul>
+<li>Printing entire dataframes in the R Markdown file</li>
+<li>Code with no comments</li>
+<li>Code which produces an error message</li>
+</ul>
+<p>You will have 1 week to complete each homework assignment, and your initial solutions are due by 2pm on the due date (at the start of class on Thursdays). Late homeworks will not be accepted. If you have not turned in a homework by the start of class on the due date, the solution key will be made public and you can do a self-assessment, but you will lose the ability to get 2 points per problem for your “good faith effort”.</p>
+<p>After you turn in your initial solutions and are provided with the answer key, you will hand in a self-assessment by the start of the next class (2pm on the following Tuesday). Your self-assessment must:</p>
+<ul>
+<li>Include an assessment of the accuracy and completeness of your “initial solutions”</li>
+<li>Give attributions as appropriate to other students who helped you</li>
+</ul>
+<p>Homework grades will be based on:</p>
+<ul>
+<li>Was your initial solution a good faith effort</li>
+<li>Did you catch all of your own errors in your self-assessment</li>
+<li>Is your updated solution correct</li>
+</ul>
+</div>
+<div id="grading-rubric-for-the-homework-is-5-points-per-question-scored-as-follows" class="section level2">
+<h2>Grading rubric for the homework is 5 points per question, scored as follows:</h2>
+<ul>
+<li><p>2 points for each initial solution being “in-good-faith”</p>
+<ul>
+<li>2: answer reflects strong independent problem solving, with clearly thought out attempts to approach the problem and a diligent and honest effort to find the solution</li>
+<li>1: answer reflects some attempt to approach the problem, but approach appears to be superficial and lacks depth of analysis</li>
+</ul></li>
+<li><p>3 points for the quality of the final answer / discussion.</p>
+<ul>
+<li>3 (Exceptional): answer is thorough, concise, and clearly demonstrates ability to analyze and interpret statistics as well as theoretical understanding of statistical concepts</li>
+<li>2 (Adequate): answer addresses the question with moderate inaccuracies in analysis and/or interpretation, or offers a correct but incomplete answer</li>
+<li>1 (Inadequate): answer attempts to address question with substantial inaccuracies in analysis and/or interpretation</li>
+<li>0 (Insufficient): answer does not attempt to address question or answer is insufficient to grade</li>
+</ul></li>
+</ul>
+<div id="all-of-this-means-that" class="section level3">
+<h3>All of this means that:</h3>
+<ul>
+<li>If you (a) submit perfectly accurate initial solutions OR (b) submit a perfectly accurate self-assessment, you get 100% of the points either way.</li>
+<li>If you simply cannot submit any homework solutions on time, after the homework due date, you will receive the solutions key and can submit a perfect self-assessment for a max score of 60% (3 out of 5 points per problem). We feel this is fair given that you did not attempt a good faith effort, and given that we also will drop your lowest homework grade.</li>
+</ul>
+</div>
+<div id="what-is-a-good-faith-effort" class="section level3">
+<h3>What is a “good faith effort”?</h3>
+<p>Simply submitting nonsense or saying “I can’t do this” for each problem will not meet our criteria for a good faith effort, because there is no attempt on your part to show us why you are struggling, what you tried but didn’t work, what specific part of the problem you got stuck on, which other examples in the text/lecture you tried to work through to get a grasp on the problem, etc. This is especially true if you don’t attend any office hours, post on Sakai, or otherwise seek out help <em>before</em> the due date. The good faith effort is just that- we are interested in seeing evidence of a diligent and honest effort on your part, made with deliberate intention, to understand the problem and attempt an answer.</p>
+</div>
+</div>
+<div id="midterm" class="section level2">
+<h2>Midterm</h2>
+<p>For the midterm, you will work individually on a take-home exam that will cumulatively cover topics in class. You may use the following resources: your class notes, your textbook, your previous homeworks, the Internet. You may not use the following resources: anything that is alive or communicates back to you (including but not limited to other students, professors, professional statisticians, tutors, parents, email or phone contacts, online forums or chat rooms, etc.). You should submit your own original work.</p>
+</div>
+<div id="project" class="section level2">
+<h2>Project</h2>
+<p>For the final project, you will reproduce and extend a published research article. Projects will be done in teams of two or more depending on class size; the same grade will be given to all team members unless there is a clear discrepancy in labor that is brought to the instructor’s attention before the final report is due.</p>
+</div>
+</div>
+<div id="academic-dishonesty-and-student-behavior" class="section level1">
+<h1>Academic Dishonesty and Student Behavior</h1>
+<p>Students are expected to follow University policy with regards to issues of academic dishonesty (e.g., cheating or plagiarism) and proper conduct in the classroom, as detailed in the Student Handbook. Violation of academic integrity is considered a serious offense by the University and is treated accordingly. Violations include, but are not limited to, cheating on exams, having unauthorized possession of exams, and submitting the work of another person as your own. Disciplinary action for violation of these policies will be decided on a case-by-case basis and will be in accord with University policy.</p>
+<div id="students-with-disabilities" class="section level2">
+<h2>Students with Disabilities</h2>
+<p>Our program is committed to all students achieving their potential. If you have a disability or think you may have a disability (physical, learning, hearing, vision, psychological) which may need a reasonable accommodation please contact Student Access at (503) 494-0082 or e-mail at <a href="mailto:orchards@ohsu.edu">orchards@ohsu.edu</a> to discuss your needs. You can also find more information at www.ohsu.edu/student-access. Because accommodations can take time to implement, it is important to have this discussion as soon as possible. All information regarding a student’s disability is kept in accordance with relevant state and federal laws.</p>
+</div>
+<div id="using-code-from-others" class="section level2">
+<h2>Using code from others</h2>
+<p>You are welcome to use code written by other people, including snippets of code you find online and code written by people who are helping you. I highly recommend Cookbook for R online, Stack Overflow, and GitHub for help. However, if you are using code from someone else, remember to give credit where it is due.</p>
+</div>
+<div id="ohsu-grade-submission-policy" class="section level2">
+<h2>OHSU Grade Submission Policy</h2>
+<p>Graduate Studies in the OHSU School of Medicine is committed to providing grades to students in a timely manner. Course instructors will provide students with information in writing at the beginning of each course that describes the grading policies and procedures including but not limited to evaluation criteria, expected time needed to grade individual student examinations and type of feedback they will provide. Class grades are due to the Registrar by the Friday following the week of finals.</p>
+</div>
+<div id="ohsu-commitment-to-equity-and-inclusion" class="section level2">
+<h2>OHSU Commitment to Equity and Inclusion</h2>
+<p>OHSU is committed to creating and fostering a learning and working environment based on open communication and mutual respect. If you encounter sexual harassment, sexual misconduct, sexual assault, or discrimination based on race, color, religion, age, national origin or ancestry, veteran or military status, sex, marital status, pregnancy or parenting status, sexual orientation, gender identity, disability or any other protected status please contact the Affirmative Action and Equal Opportunity Department at 503-494-5148 or <a href="mailto:aaeo@ohsu.edu">aaeo@ohsu.edu</a>. Inquiries about Title IX compliance or sex/gender discrimination and harassment may be directed to the OHSU Title IX Coordinator at 503-494-0258 or <a href="mailto:titleix@ohsu.edu">titleix@ohsu.edu</a>.</p>
+</div>
+</div>
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="by-nc.png" height="400" width="65"/></a>
+</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
