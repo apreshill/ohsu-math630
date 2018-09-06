@@ -10,7 +10,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 
 This is an [R Markdown website](http://rmarkdown.rstudio.com/rmarkdown_websites.html). 
-The source can be found [on GitHub <i class="fa fa-github"></i>](https://github.com/apreshill/ohsu-basic-stats).
+The source can be found [on GitHub <i class="fa fa-github"></i>](https://github.com/apreshill/ohsu-math630).
 
 The rendered site link is:
 
