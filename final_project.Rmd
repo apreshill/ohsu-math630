@@ -45,7 +45,10 @@ You will submit a zip file that contains:
 * All data(s) needed
 * All scripts needed that are called in your .Rmd file
 
-Although the structure of the reports differs this year from years past, [this link](https://sakai.ohsu.edu/x/JWbz2c) has 2 sample reports.
+Although the structure of the reports differs this year from years past, here are links to 2 sample reports:
+
+* [Turbidity interferes with foraging success of visual but not chemosensory predators](final-examples/example1.pdf)
+* [Different Visual Preference Patterns in Response to Simple and Complex Dynamic Social Stimuli in Preschool-Aged Children with Autism Spectrum Disorders](final-examples/example2.pdf)
 
 
 
