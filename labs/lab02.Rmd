@@ -1,7 +1,6 @@
 ---
-title: 'CONJ620: CM 2.6'
-author: "Alison Hill"
-subtitle: Integrative Lab
+title: "MATH 530/630"
+subtitle: "Integrative Lab 2"
 output:
   html_document:
     toc: TRUE

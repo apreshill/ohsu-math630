@@ -1,7 +1,6 @@
 ---
-title: "CONJ620: CM 3.6"
-subtitle: "Integrative Lab"
-author: "Alison Presmanes Hill"
+title: "MATH 530/630"
+subtitle: "Integrative Lab 3"
 output:
   html_document:
     keep_md: TRUE
@@ -11,10 +10,7 @@ output:
     toc: TRUE
     toc_float: TRUE
 ---
-```{r include = FALSE}
-knitr::opts_chunk$set(error = TRUE, comment = NA, warning = FALSE, message = FALSE, tidy = FALSE)
-options(scipen = 999)
-```
+
 
 # Overview
 
@@ -40,13 +36,15 @@ Using the key, your self-assessment should include even **more** narrative; wher
 
 Please install a new version of `infer` first:
 
-```{r eval = FALSE}
+
+```r
 remotes::install_github("tidymodels/infer", ref = "develop")
 ```
 
 
 
-```{r}
+
+```r
 library(tidyverse)
 library(infer)
 library(skimr)
@@ -63,14 +61,10 @@ We are going to work with a dataset called [`fishermen_mercury.csv`](https://raw
 
 
 
-```{r echo = FALSE}
-mercury <- read_csv(here::here("data", "fishermen_mercury_original.csv")) %>% 
-  rename(total_mercury = TotHg, methyl_mercury = MeHg)
 
-write_csv(mercury, here::here("data", "fishermen_mercury.csv"))
-```
 
-```{r}
+
+```r
 mercury <- read_csv(here::here("data", "fishermen_mercury.csv"),
                     col_types = cols(
                       fisherman = col_factor(levels = NULL))
@@ -136,9 +130,7 @@ The following are excerpts from ModernDive:
 > "The most common normalization is known as the $z$-score. The formula for a $z$-score is 
 $$Z = \frac{x - \mu}{\sigma},$$ where $x$ represent the value of a variable, $\mu$ represents the mean of the variable, and $\sigma$ represents the standard deviation of the variable.  Thus, if your variable has 10 elements, each one has a corresponding $z$-score that gives how many standard deviations away that value is from its mean.  $z$-scores are normally distributed with mean 0 and standard deviation 1.  They have the common, bell-shaped pattern seen below."
 
-```{r echo=FALSE}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) + stat_function(fun = dnorm)
-```
+![](lab03_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 > "Recall, that we hardly ever know the mean and standard deviation of the population of interest.  This is almost always the case when considering the means of two independent groups.  To help account for us not knowing the population parameter values, we can use the sample statistics instead, but this comes with a bit of a price in terms of complexity."
 
@@ -186,32 +178,16 @@ Given the above formulas, answer the following questions using R code plus narra
 
 * What is the pooled standard error for the `total_mercury` variable? (try to make all quantities here defined variables using `dplyr::group_by() %>% summarize() %>% filter() %>% pull()`)
 
-```{r include = FALSE}
-(mercury_stats <- mercury %>% 
-  group_by(fisherman) %>% 
-  summarize(avg_mercury = mean(total_mercury, na.rm = TRUE),
-            var_mercury = var(total_mercury, na.rm = TRUE),
-            n_groups = n()))
-n_f <- mercury_stats %>% filter(fisherman == 1) %>% pull(4) # fishermen
-n_nf <- mercury_stats %>% filter(fisherman == 0) %>% pull(4) # non fishermen
-var_f <- mercury_stats %>% filter(fisherman == 1) %>% pull(3) # var fishermen
-var_nf <- mercury_stats %>% filter(fisherman == 0) %>% pull(3) # var non fishermen
-num_sp <- ((n_f - 1)* var_f) + ((n_nf - 1)* var_nf)
-denom_sp <- n_f + n_nf - 2
-(sp <- sqrt(num_sp / denom_sp))
-(t_denom <- sp * sqrt((1/n_f) + (1/n_nf)))
-```
+
 
 * What are the minimum $t$-statistic values we need to conclude that there is a significant difference at $\alpha = .05$ (2-tailed)? (hint: degrees of freedom for a two-sample t-test are $N$ - 2)
 
-```{r include = FALSE}
-nsamp <- 135
-(tcrits <- qt(c(.025, .975), df = nsamp - 2))
-```
+
 
 * Use the following code to plot these critical t-values.
 
-```{r eval = FALSE}
+
+```r
 upper_tcrit <- # fill in here
 mercury %>% 
   specify(total_mercury ~ fisherman) %>% 
@@ -222,33 +198,20 @@ mercury %>%
             direction = "both") # gives us shading
 ```
 
-```{r include = FALSE}
-upper_tcrit <- tcrits[2] # fill in here
-mercury %>% 
-  specify(total_mercury ~ fisherman) %>% 
-  hypothesize(null = "independence") %>% 
-  calculate(stat = "t", order = c(1,0)) %>%
-  visualize(method = "theoretical", 
-            obs_stat = upper_tcrit, 
-            direction = "both")
-```
+
 
 * Now we know the minimum $t$-statistic value we need to beat, what is the minimum absolute value for the mean difference we need to detect significance with $\alpha = .05$ (2-tailed)? (big hint: realize that the rearranged formula below may be helpful!)
 
 $${\displaystyle T \times {s_{p}\times {\sqrt {{\frac {1}{n_{1}}}+{\frac {1}{n_{2}}}}}}}={{\bar {x}}_{1}-{\bar {x}}_{2}}$$
 
-```{r include = FALSE}
-(meancrits <- tcrits * t_denom)
-```
+
 
 
 * Complete this sentence filling in numbers from your above calculations:
 
 > With $n_1$ fisherman and $n_2$ non-fishermen, given the variability in total mercury present in this sample, we will reject the null hypothesis that there is no difference in total mercury levels between the two groups if we obtain a $t$-statistic greater than X (absolute value, $\alpha$ = .05, 2-tailed). This is equivalent to saying we will reject the null hypothesis if we obtain a mean difference greater than X (absolute value, $\alpha$ = .05, 2-tailed).
 
-```{r eval = FALSE, include = FALSE}
-With 100 fisherman and 35 non-fishermen, given the variability in total mercury present in this sample, we will reject the null hypothesis that there is no difference in total mercury levels between the two groups if we obtain a $t$-statistic greater than 1.977961 (absolute value, $\alpha$ = .05, 2-tailed). This is equivalent to saying we will reject the null hypothesis if we obtain a mean difference greater than 1.11395 (absolute value, $\alpha$ = .05, 2-tailed).
-```
+
 
  
 
@@ -258,26 +221,17 @@ Answer the following questions using R code and narrative:
 
 * What mean difference (raw) did we observe? Is it greater than the minimum mean difference we need to beat? (hint: try `infer::specify` then `calculate` with `stat = "diff in means"`). 
 
-```{r include = FALSE}
-mean_diff <- mercury %>% 
-  specify(total_mercury ~ fisherman) %>% 
-  calculate(stat = "diff in means", 
-            order = c(1, 0)) 
-mean_diff
-mean_diff > meancrits
-```
+
 
 * Calculate the $t$-statistic "by hand" using R. Is it greater than the minimum $t$-statistic we need to beat? (here is the formula again):
 
 $${\displaystyle T={\frac {{\bar {x}}_{1}-{\bar {x}}_{2}}{s_{p}\times {\sqrt {{\frac {1}{n_{1}}}+{\frac {1}{n_{2}}}}}}}}$$
-```{r include = FALSE}
-(calc_t <- mean_diff / t_denom)
-calc_t > tcrits
-```
+
 
 * Do a classical 2-sample t-test (assuming equal variances, more on this later) in R using `infer`, do the results match your calculations?:
 
-```{r eval = FALSE}
+
+```r
 mercury %>% 
   t_test(total_mercury ~ fisherman, order = c(1, 0), var.equal = TRUE)
 ```
@@ -285,15 +239,12 @@ mercury %>%
 
 * Interpret this output. What is the statistic? What is the meaning/interpretation of the confidence interval here? (hint: Does it include zero? What does it mean if it does or does not? What value is in the center of the interval?)
 
-```{r include = FALSE}
-obs_t <- mercury %>% 
-  t_test(total_mercury ~ fisherman, order = c(1, 0), var.equal = TRUE) %>% 
-  pull(1)
-```
+
 
 * Use the code below to compare the normal distribution to the $t$-distribution, which has only one parameter: degrees of freedom (`df`). You can use the `dt` and `dnorm` with the `stat_function` layer in `ggplot` to plot the *densities* for each distribution. Change the `df` argument here a few times to view its effect: what do you see? (you don't need to print any of these plots to your final file- I want you to reflect on how the two distributions differ). 
 
-```{r eval = FALSE}
+
+```r
 df <- 10
 ggplot(data.frame(x = c(-4, 4)), aes(x)) + 
   stat_function(fun = dt, args = list(df = df)) + # t dist
@@ -303,196 +254,13 @@ ggplot(data.frame(x = c(-4, 4)), aes(x)) +
 
 * Save your observed $t$-statistic, and use `infer` to make a plot of the null t-distribution with a red line for your `obs_stat`, shading in both directions. Try adding `geom_vline()` to this object so you can add vertical lines where your two "critical t-values" are. 
 
-```{r include = FALSE}
-mercury %>% 
-  specify(total_mercury ~ fisherman) %>% 
-  hypothesize(null = "independence") %>% 
-  calculate(stat = "t", order = c(1,0)) %>%
-  visualize(method = "theoretical", 
-            obs_stat = obs_t, 
-            direction = "both") +
-  geom_vline(aes(xintercept = tcrits), color = "dodgerblue")
-```
 
 
 
-```{r infer-reprex-setup, eval = FALSE, include = FALSE}
-set.seed(100)
-fish_fake <- mercury %>% 
-  select(fisherman, total_mercury) %>% 
-  group_by(fisherman) %>% 
-  #sample_n(15) %>% 
-  mutate(fisherman = dplyr::recode(fisherman, `0` = "nf", `1` = "f"))
 
-library(datapasta)
-# dpasta(fish_fake)
-```
 
-```{r infer-reprex, eval = FALSE, include = FALSE}
-#library(tidyverse)
-#library(infer)
-fish <- tibble::tribble(
-  ~fisherman, ~total_mercury,
-         "f",          4.484,
-         "f",          4.789,
-         "f",          3.856,
-         "f",         11.435,
-         "f",         10.849,
-         "f",          6.457,
-         "f",         17.788,
-         "f",          4.908,
-         "f",         10.116,
-         "f",          9.495,
-         "f",          6.092,
-         "f",          3.799,
-         "f",          0.025,
-         "f",          5.995,
-         "f",          1.717,
-         "f",          4.615,
-         "f",          3.362,
-         "f",          3.928,
-         "f",          1.833,
-         "f",          5.668,
-         "f",            4.7,
-         "f",          2.391,
-         "f",          3.294,
-         "f",          2.272,
-         "f",           2.64,
-         "f",          1.342,
-         "f",          1.552,
-         "f",          4.622,
-         "f",          7.805,
-         "f",          2.643,
-         "f",          6.111,
-         "f",          2.476,
-         "f",          1.619,
-         "f",          1.789,
-         "f",          2.484,
-         "f",          1.757,
-         "f",          1.239,
-         "f",          5.311,
-         "f",          2.794,
-         "f",          1.984,
-         "f",          2.697,
-         "f",          0.692,
-         "f",          2.404,
-         "f",          1.503,
-         "f",           0.75,
-         "f",          0.276,
-         "f",           3.81,
-         "f",          1.765,
-         "f",          0.408,
-         "f",          3.901,
-         "f",           0.48,
-         "f",          3.826,
-         "f",          3.451,
-         "f",           2.32,
-         "f",          4.086,
-         "f",          2.272,
-         "f",          2.564,
-         "f",          7.998,
-         "f",          5.081,
-         "f",          0.366,
-         "f",          2.477,
-         "f",          5.288,
-         "f",          5.676,
-         "f",          2.296,
-         "f",           6.11,
-         "f",          2.628,
-         "f",          3.366,
-         "f",          1.746,
-         "f",          1.131,
-         "f",          1.502,
-         "f",           3.71,
-         "f",          4.568,
-         "f",           2.34,
-         "f",          4.083,
-         "f",          3.886,
-         "f",          3.006,
-         "f",          1.615,
-         "f",          5.314,
-         "f",          2.752,
-         "f",          4.214,
-         "f",           4.93,
-         "f",          2.965,
-         "f",          4.422,
-         "f",         11.863,
-         "f",         17.131,
-         "f",          1.616,
-         "f",          8.873,
-         "f",          2.162,
-         "f",          8.265,
-         "f",          4.208,
-         "f",           4.65,
-         "f",          7.241,
-         "f",         11.925,
-         "f",          3.753,
-         "f",          6.277,
-         "f",          2.992,
-         "f",          4.704,
-         "f",          0.359,
-         "f",          4.008,
-         "f",          5.345,
-        "nf",          2.455,
-        "nf",          0.941,
-        "nf",          2.478,
-        "nf",          3.212,
-        "nf",          5.214,
-        "nf",           1.12,
-        "nf",          0.745,
-        "nf",          4.645,
-        "nf",          4.981,
-        "nf",          2.812,
-        "nf",          0.846,
-        "nf",          5.142,
-        "nf",          1.111,
-        "nf",          1.094,
-        "nf",          2.978,
-        "nf",          3.942,
-        "nf",          1.131,
-        "nf",          0.979,
-        "nf",          3.542,
-        "nf",          4.243,
-        "nf",          4.216,
-        "nf",          4.676,
-        "nf",          2.979,
-        "nf",          3.112,
-        "nf",          1.745,
-        "nf",          2.101,
-        "nf",          1.975,
-        "nf",          1.997,
-        "nf",          2.122,
-        "nf",          0.844,
-        "nf",          2.411,
-        "nf",          2.497,
-        "nf",          3.764,
-        "nf",          2.769,
-        "nf",          0.764
-  )
 
-# t = 2.7
-t.test(total_mercury ~ fisherman, data = fish, var.equal = TRUE)
 
-# Welch's t = 3.9
-t.test(total_mercury ~ fisherman, data = fish, var.equal = FALSE)
-
-# returns standard t
-fish %>% 
-  t_test(total_mercury ~ fisherman, order = c("f", "nf"), var.equal = TRUE)
-
-# returns welch's t
-fish %>% 
-  t_test(total_mercury ~ fisherman, order = c("f", "nf"))
-
-# but here only welch's seems possible
-fish %>% 
-  specify(total_mercury ~ fisherman) %>% 
-  calculate(stat = "t", order = c("f", "nf"), var.equal = TRUE)
-
-fish %>% 
-  specify(total_mercury ~ fisherman) %>% 
-  calculate(stat = "t", order = c("f", "nf"))
-```
 
 
 
@@ -502,11 +270,7 @@ But, how can we calculate the p-value from this? Well the easy way is with your 
 
 * Use `pt()` to calculate the 2-sided p-value in R. Does it match the output from `infer`?
 
-```{r include = FALSE}
-upper <- pt(obs_t, df = nsamp - 2)
-lower <- 1-pt(obs_t, df = nsamp - 2)
-2*min(upper,lower)
-```
+
 
 
 ## The theoretical confidence interval 
@@ -521,11 +285,7 @@ You should already have variables for the mean difference and the $t$-statistic 
 
 * Use these values to calculate the 95% confidence interval for the difference in means. Does it match the output from `infer`? Does it contain zero? Will this interval ever *not* contain the observed difference in sample means?
 
-```{r include = FALSE}
-ll <- mean_diff - (tcrits[2]*t_denom)
-ul <- mean_diff + (tcrits[2]*t_denom)
-c(ll, ul)
-```
+
 
 
 # Compare t-test results to permutation test
@@ -537,42 +297,6 @@ Using [ModernDive 10.7](http://moderndive.netlify.com/10-hypothesis-testing.html
 Use a simple linear regression to analyze `total_mercury ~ fisherman`. Look carefully at the output, and compare to the output of the classical t-test. What do you notice is the same?
 
 
-```{r include = FALSE, eval = FALSE}
-# fit the univariate model
-fit_univariate <- lm(total_mercury ~ fisherman, 
-                     data = mercury)
 
-# fit the multiple predictor model with fisherman, weight, fishmlwk
-# assume parallel slopes
-fit_multiple <- lm(total_mercury ~ fisherman + weight + fishmlwk,
-                   data = mercury)
-
-# let's look at the output
-summary(fit_univariate)
-summary(fit_multiple)
-
-# Here are our two models
-fit_univariate <- lm(total_mercury~fisherman,data=fishdata)
-fit_multiple <- lm(total_mercury~fisherman+weight+fishmlwk,data=fishdata)
-
-# Tidy 'em up
-fit_univariate_tidy <- tidy(fit_univariate)
-fit_multiple_tidy <- tidy(fit_multiple)
-
-# Bind them
-both_tidy <- bind_rows("univariate"=fit_univariate_tidy,
-                       "multiple"=fit_multiple_tidy,
-                       .id="model")
-both_tidy
-
-# Same with glance
-both_glance <- bind_rows("univariate"=glance(fit_univariate),
-                         "multiple"=glance(fit_multiple),
-                         .id="model")
-both_glance
-
-# Show just fisherman's covariate information
-both_tidy%>%filter(term=="fisherman0")
-```
 
 

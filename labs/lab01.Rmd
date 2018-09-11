@@ -1,7 +1,6 @@
 ---
-title: "MATH 530"
+title: "MATH 530/630"
 subtitle: "Integrative Lab 1"
-author: "Alison Hill"
 output: 
   html_document:
     toc: TRUE
